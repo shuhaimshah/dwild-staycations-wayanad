@@ -3,6 +3,7 @@ import { siteConfig } from '../data/siteConfig';
 import { ExternalCtaButton } from './ExternalCtaButton';
 import { getGoogleMapsUrl, getPhoneUrl, getEmailUrl, getWhatsAppUrl } from '../utils/ctaHelpers';
 import { MapPin, Phone, Mail, MessageSquare, Plane, Train, Car } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const LocationMap: React.FC = () => {
   const mapsUrl = getGoogleMapsUrl();
@@ -15,19 +16,21 @@ export const LocationMap: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Header */}
-        <div className="mb-16 border-b border-dwild-sand/15 pb-8">
-          <span className="text-xs tracking-[0.3em] text-dwild-sand uppercase font-medium block mb-2">
-            LOCATION & ACCESS
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-dwild-offwhite uppercase">
-            FIND YOUR WAY <span className="font-semibold text-dwild-sand italic">TO DWILD</span>
-          </h2>
-        </div>
+        <ScrollReveal>
+          <div className="mb-16 border-b border-dwild-sand/15 pb-8">
+            <span className="text-xs tracking-[0.3em] text-dwild-sand uppercase font-medium block mb-2">
+              LOCATION & ACCESS
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-dwild-offwhite uppercase">
+              FIND YOUR WAY <span className="font-semibold text-dwild-sand italic">TO DWILD</span>
+            </h2>
+          </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
           {/* Left Column: Contact & Transport details */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8 bg-dwild-jungle p-8 sm:p-10 border border-dwild-sand/15">
+          <ScrollReveal direction="left" className="lg:col-span-5 flex flex-col justify-between space-y-8 bg-dwild-jungle p-8 sm:p-10 border border-dwild-sand/15 rounded-sm">
             <div>
               <span className="text-xs tracking-[0.25em] text-dwild-sand uppercase font-semibold block mb-4">
                 PROPERTY ADDRESS
@@ -117,10 +120,10 @@ export const LocationMap: React.FC = () => {
                 className="w-full"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Custom Dark Styled Embed / Map Display */}
-          <div className="lg:col-span-7 relative min-h-[400px] bg-dwild-black border border-dwild-sand/15 overflow-hidden flex flex-col items-center justify-center p-8 group">
+          <ScrollReveal direction="right" delay={0.15} className="lg:col-span-7 relative min-h-[400px] bg-dwild-black border border-dwild-sand/15 overflow-hidden flex flex-col items-center justify-center p-8 group rounded-sm">
             {/* Custom Styled Map Canvas Overlay */}
             <div className="absolute inset-0 z-0">
               <iframe
@@ -150,7 +153,7 @@ export const LocationMap: React.FC = () => {
                 className="w-full text-[10px] py-2.5"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 

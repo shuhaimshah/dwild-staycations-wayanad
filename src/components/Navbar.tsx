@@ -47,7 +47,7 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Minimal Desktop Nav Links */}
+          {/* Minimal Desktop Nav Links with Animated Underline Indicator */}
           <nav className="hidden md:flex items-center space-x-10">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
@@ -55,24 +55,26 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative text-xs tracking-[0.25em] font-medium transition-colors py-1 ${
+                  className={`group relative text-xs tracking-[0.25em] font-medium transition-colors py-1 ${
                     isActive ? 'text-dwild-sand font-semibold' : 'text-dwild-offwhite/85 hover:text-dwild-sand'
                   }`}
                 >
                   {link.name}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-dwild-sand" />
-                  )}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-dwild-sand transition-all duration-300 ease-out ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
                 </Link>
               );
             })}
           </nav>
 
-          {/* Primary Action */}
+          {/* Primary Action Button */}
           <div className="hidden md:flex items-center space-x-6">
             <Link
               to="/book"
-              className="group inline-flex items-center gap-2 text-xs tracking-[0.25em] uppercase font-semibold text-dwild-black bg-dwild-sand px-6 py-3 border border-dwild-sand hover:bg-dwild-offwhite hover:border-dwild-offwhite transition-all duration-300 shadow-md"
+              className="group inline-flex items-center gap-2 text-xs tracking-[0.25em] uppercase font-semibold text-dwild-black bg-dwild-sand px-6 py-3 border border-dwild-sand hover:bg-dwild-offwhite hover:border-dwild-offwhite hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-md"
             >
               <span>BOOK NOW</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

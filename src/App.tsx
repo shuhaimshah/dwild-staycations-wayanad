@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { FloatingBookingBar } from './components/FloatingBookingBar';
@@ -27,29 +28,45 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+// Animated Route Wrapper
+const AnimatedRoutes: React.FC = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="flex-grow"
+      >
+        <Routes location={location}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/stays" element={<StaysPage />} />
+          <Route path="/stays/:slug" element={<StayDetailPage />} />
+          <Route path="/experiences" element={<ExperiencesPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/wayanad" element={<WayanadPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/book" element={<BookPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
 export const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
       <CustomCursor />
-      <div className="flex flex-col min-h-screen bg-dwild-dark text-dwild-offwhite selection:bg-dwild-sand selection:text-dwild-black">
+      <div className="flex flex-col min-h-screen bg-dwild-dark text-dwild-offwhite selection:bg-dwild-sand selection:text-dwild-black overflow-x-hidden">
         <Navbar />
-        
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/stays" element={<StaysPage />} />
-            <Route path="/stays/:slug" element={<StayDetailPage />} />
-            <Route path="/experiences" element={<ExperiencesPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/wayanad" element={<WayanadPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/book" element={<BookPage />} />
-            <Route path="*" element={<HomePage />} />
-          </Routes>
-        </div>
-
+        <AnimatedRoutes />
         <Footer />
         <FloatingBookingBar />
         <WhatsAppButton />

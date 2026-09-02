@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const WoodenCabinFeature: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ export const WoodenCabinFeature: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Text Column */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
+          <ScrollReveal direction="left" className="lg:col-span-5 flex flex-col justify-center space-y-6">
             <span className="text-xs tracking-[0.35em] text-dwild-sand font-medium uppercase">
               HERITAGE ECO CRAFT
             </span>
@@ -33,11 +34,11 @@ export const WoodenCabinFeature: React.FC = () => {
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Image Column with New High-Quality Mud Cottage Photo */}
-          <div className="lg:col-span-7 relative group" data-cursor="VIEW">
-            <div className="relative aspect-[4/5] sm:aspect-[4/5] lg:aspect-[14/11] w-full overflow-hidden border border-dwild-sand/20 shadow-2xl">
+          <ScrollReveal direction="right" delay={0.15} className="lg:col-span-7 relative group" data-cursor="VIEW">
+            <div className="relative aspect-[4/5] sm:aspect-[4/5] lg:aspect-[14/11] w-full overflow-hidden border border-dwild-sand/20 shadow-2xl rounded-sm">
               <img
                 src="/assets/stays/dwild-real-mud-cottage.jpg"
                 alt="DWILD Traditional Kerala Mud Cottage with Mandala Mural"
@@ -47,7 +48,7 @@ export const WoodenCabinFeature: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dwild-black/50 via-transparent to-transparent opacity-50" />
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
